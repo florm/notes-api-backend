@@ -1,0 +1,42 @@
+Este proyecto es de node para backend
+Empece creando una carpeta llamada parte 3 y en la consola escribi: npm init -y (el -y es para que te cree todo solo por defecto)
+Cuando termino me creo el archivo package.json y nada mas
+El resto de las cosas son las que se fueron agregando a medida que avance en el curso fullstack de midudev cap 5
+
+En el archivo json agregue un script "start" para que cuando inicie arranque por el index.js que cree recien
+
+El json ademas tiene un "dev" qie se ejecuta con npm run dev. El dev tiene un "nodemon index.js". El nodemon es un packege que se usa para no tener que estar actualizando a mano el servidor. Se actualiza automaticamente cuando se van guardando los cambios.
+Eso se instala con el comando: npm install nodemon -D (-D porque es de developer y no poner un -g porque no quiero que se instale global, sino en este proyecto. Porque si alguien quiere bajarse mi proyecto no va a tener el nodemon)
+
+
+Paquete "express" framework para crear servicios. Permite crear un servidor que va a tener diferentes rutas y ademas tiene midlewares, etc
+npm install express (aca no va el -D porqu es una dependencia de produccion, no de desarrollo)
+
+
+Extension Rest Client => para hacer peticiones rest directo en visual code. El ejemplo de uso esta en la carpeta request
+
+Linters: ESLint
+npm install eslint -D
+Despues pongo este comando para configurarlo: node node_modules\eslint\bin\eslint.js --init
+
+npm install standard -D (standard utiliza eslint asi que no es necesaria esa dependencia si instalamos standard)
+Asi que borro eslint de las dependencias y agrego esto abajo:
+"eslintConfig": {
+    "extends": "./node_modules/standard/eslintrc.json"
+  }
+
+Middleware -> es una funcion que intercepta la peticion que esta pasando por tu API
+app.use() lo que este aca intercepta el request
+ejemplo en el codigo
+app.use((request, response) =>{
+	response.status(404).json({
+		error: 'Not found'
+	})
+})
+es util para interceptar request que no tienen un path y responden con un 404
+
+middleware Cors -> para permitir que la api pueda ser utilizada por diferentes origenes.
+En el caso de mi app la tengo en localhost:3000 pero la api de node esta en localhost:3001, como son distintos origenes no me deja hacer la peticion
+npm install cors -E (es una dependencia de produccion)
+
+
